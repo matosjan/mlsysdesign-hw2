@@ -19,7 +19,15 @@ CREATE TABLE IF NOT EXISTS hw2.transactions
     jobs String,
     merchant_lat Float64,
     merchant_lon Float64,
-    target Nullable(UInt8)
+    target Nullable(UInt8),
+    PROJECTION max_by_state
+    (
+        SELECT
+            us_state,
+            argMax(cat_id, tuple(amount, cat_id)),
+            max(amount)
+        GROUP BY us_state
+    )
 )
 ENGINE = MergeTree
 ORDER BY tuple();

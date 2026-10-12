@@ -1,0 +1,3 @@
+mode,runs,median_ms,rows_read,bytes_read
+without_projection,20,69.476,1048575,38299705
+with_projection,20,3.932,51,8670
